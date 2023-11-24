@@ -1,0 +1,22 @@
+form {
+    width: 90%;
+    margin: 1.6rem auto;
+}
+
+button {
+    background-color: #00CC99;
+    width: 15rem;
+    color: #fff;
+    font-size: 1.6rem;
+    border: 0;
+    border-radius: 1rem;
+    padding: 1rem .5rem;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+
+button:hover {
+    background-color: #0099FF;
+    transform: scale(1.01);
+}
