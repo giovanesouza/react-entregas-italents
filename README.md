@@ -1,2 +1,10 @@
 # react-entregas-italents
-Repositório desenvolvido para realizar as entregas do curso  Front-end Development da formação Full Stack da Italents em parceria com a Ília.
+
+# Atividade 1: Desenvolver uma aplicação que contenha os seguintes tópicos.
+
+* Desenvolver um projeto com no mínimo 3 componentes;
+* Troca de dados via propriedades;
+* Um dos componentes deve utilizar o atributo children;
+* Estilização em todos componentes;
+* Uso de useState para gerenciamento e exibição das variáveis de estado.
+
