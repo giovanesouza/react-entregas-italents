@@ -25,7 +25,7 @@ const FormBirth = ({atualizarAniversarios}) => {
 
         atualizarAniversarios({ nome: fieldValue.nome, dataNasc: fieldValue.dataNasc });
 
-        console.log(birthday); // Imprime os valores com a lista atualizada
+        // console.log(birthday); // Imprime os valores com a lista atualizada
     }
 
     // A cada mudança nos inputs, captura o texto digitado
