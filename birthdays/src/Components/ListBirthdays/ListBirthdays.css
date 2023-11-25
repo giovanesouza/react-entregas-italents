@@ -1,0 +1,35 @@
+table {
+    width: 90%;
+    text-align: justify;
+    border-collapse: collapse;
+    margin: 3rem auto 0;
+}
+
+table th, td {
+    color: #212529;
+    font-size: 1.4rem;
+    border: .1rem solid #ccc;
+    padding: .5rem 1rem;
+}
+
+table tr:hover {
+    background-color: #eee;
+    transition: all .2s ease-out;
+}
+
+
+td input {
+    background-color: transparent;
+    font-size: 1.4rem;
+    border: 0;
+}
+
+.empty-list {
+    color: #666c74;
+    font-weight: bold;
+}
+
+td span.delete {
+    color: #dc3545;
+    cursor: pointer;
+}

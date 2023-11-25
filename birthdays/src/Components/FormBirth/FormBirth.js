@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './FormBirth.css';
 import FormBirthItem from '../FormBirthItem/FormBirthItem';
 
-const FormBirth = () => {
+const FormBirth = ({atualizarAniversarios}) => {
     // Lista de aniversariantes
     const [birthday, setBirthday] = useState([]);
 
@@ -23,7 +23,9 @@ const FormBirth = () => {
         // Limpa dados dos inputs
         setFieldValue({ nome: "", dataNasc: "" });
 
-        // console.log(birthday); // Imprime os valores com a lista atualizada
+        atualizarAniversarios({ nome: fieldValue.nome, dataNasc: fieldValue.dataNasc });
+
+        console.log(birthday); // Imprime os valores com a lista atualizada
     }
 
     // A cada mudança nos inputs, captura o texto digitado
@@ -37,24 +39,24 @@ const FormBirth = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <FormBirthItem
-                nomeLabel='Nome da pessoa'
-                inputType='text'
-                placeholder='Digite o nome da pessoa aqui, por exemplo: José Dev'
-                name='nome'
-                value={fieldValue.nome}
-                onChange={handleChange} />
+            <form onSubmit={handleSubmit}>
+                <FormBirthItem
+                    nomeLabel='Nome da pessoa'
+                    inputType='text'
+                    placeholder='Digite o nome da pessoa aqui, por exemplo: José Dev'
+                    name='nome'
+                    value={fieldValue.nome}
+                    onChange={handleChange} />
 
-            <FormBirthItem
-                nomeLabel='Data de nascimento'
-                inputType='date'
-                name='dataNasc'
-                value={fieldValue.dataNasc}
-                onChange={handleChange} />
+                <FormBirthItem
+                    nomeLabel='Data de nascimento'
+                    inputType='date'
+                    name='dataNasc'
+                    value={fieldValue.dataNasc}
+                    onChange={handleChange} />
 
-            <button type='submit'>Salvar</button>
-        </form>
+                <button type='submit'>Salvar</button>
+            </form>
     );
 }
 
