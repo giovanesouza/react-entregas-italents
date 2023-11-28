@@ -1,0 +1,10 @@
+.home-banner {
+    width: 100%;
+    height: 30rem;
+    
+    background-image: url('../../assets/kids-teacher-school.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    
+}

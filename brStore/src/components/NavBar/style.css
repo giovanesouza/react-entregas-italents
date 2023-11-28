@@ -1,0 +1,46 @@
+header {
+    background-color: var(--blue);
+    color: var(--light-100);
+}
+
+
+input[name="search"],
+.bi-search {
+    color: var(--blue);
+}
+
+
+input[name="search"]::placeholder {
+    color: #215BA8;
+}
+
+
+header nav ul a {
+    color: var(--light-100);
+    font-size: 1.6rem;
+}
+
+nav ul a:hover {
+    color: var(--light-50);
+    transition: all .2s ease-in-out;
+}
+
+
+
+.total-items-bag {
+    display: inline-block;
+    text-align: center;
+    line-height: 1rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--light-50);
+    color: var(--blue);
+
+    font-size: .8rem;
+    font-weight: bold;
+
+    position: absolute;
+    top: .3rem;
+    right: -.4rem;
+}
