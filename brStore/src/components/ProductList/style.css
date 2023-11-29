@@ -3,4 +3,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1.6rem;
+
+    display: none;
+    opacity: 0;
+    transition: all .2s ease-in-out;
 }
