@@ -7,6 +7,7 @@ import Jewelery from './pages/Products/jewelery';
 import MensClothing from './pages/Products/mens-clothing';
 import WomensClothing from './pages/Products/womens-clothing';
 import NotFound from './pages/NotFound';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -24,11 +25,13 @@ function App() {
           <Route path='womens-clothing' element={<WomensClothing />} />
 
         </Route>
-        
+
         {/* Rota para caminhos que não existem */}
         <Route path='/*' element={<NotFound />} />
 
       </Routes>
+
+      <Footer/>
     </>
   );
 }
