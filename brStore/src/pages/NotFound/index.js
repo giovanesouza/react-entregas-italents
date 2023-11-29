@@ -5,10 +5,10 @@ const NotFound = () => {
 
     // Hook para navegar entre páginas -> serve como redirect
     const navigate = useNavigate();
-
+    console.log(navigate)
     setTimeout(() => {
         navigate('/');
-    }, 5000);
+    }, 3000);
 
     return (
         <main className='w-screen p-2'>
