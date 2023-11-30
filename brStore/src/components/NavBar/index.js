@@ -72,7 +72,7 @@ const Navbar = () => {
 
                 <div className="flex justify-end gap-4 w-1/4">
 
-                    <Link to="/users/produtos-favoritos" id="icon-favorites">
+                    <Link to="/user/favorite-products" id="icon-favorites">
                         <i className="bi bi-suit-heart-fill text-white text-2xl" />
                     </Link>
 

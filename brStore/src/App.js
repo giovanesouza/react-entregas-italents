@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Register from './pages/Register';
 import Success from './pages/Register/success';
 import Login from './pages/Login';
+import FavoriteProducts from './pages/User/FavoriteProducts';
 
 
 function App() {
@@ -36,7 +37,9 @@ function App() {
           <Route path='success' element={<Success />} />
         </Route>
 
-          <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login />} />
+
+        <Route path='/user/favorite-products' element={<FavoriteProducts />} />
 
         {/* Rota para caminhos que não existem */}
         <Route path='/*' element={<NotFound />} />
