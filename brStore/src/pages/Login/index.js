@@ -51,7 +51,7 @@ const Login = () => {
                 Login do cliente
             </h1>
 
-            <form className="w-80 mx-auto">
+            <form className="w-80 mx-auto my-8">
 
                 {/* Input de email */}
                 <FormGroupLogin label='E-mail' inputType="email" name='email' value={fieldValue.email} onChange={handleChange} />

@@ -1,7 +1,7 @@
 
 const FormGroupLogin = ({ children, label, inputType = 'text', name, value, onChange, max, refInput }) => {
     return (
-        <div className="flex flex-col items-center mb-2 relative sm:mb-5">
+        <div className="flex flex-col items-center relative mb-3">
 
             <label htmlFor={name} className='w-full text-gray-500 font-semibold'>
                 {label}
