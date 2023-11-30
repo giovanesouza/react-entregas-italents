@@ -11,3 +11,15 @@
 .product-card:hover {
     transform: scale(1.03);
 }
+
+@media (max-width: 768px) {
+    .product-card {
+        flex: .5;
+    }
+}
+
+@media (max-width: 426px) {
+    .product-card {
+        flex: 1;
+    }
+}
