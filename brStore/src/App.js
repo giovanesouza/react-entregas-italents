@@ -12,6 +12,7 @@ import Register from './pages/Register';
 import Success from './pages/Register/success';
 import Login from './pages/Login';
 import FavoriteProducts from './pages/User/FavoriteProducts';
+import Checkout from './pages/Checkout';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path='/login' element={<Login />} />
 
         <Route path='/user/favorite-products' element={<FavoriteProducts />} />
+        <Route path='/checkout' element={<Checkout />} />
 
         {/* Rota para caminhos que não existem */}
         <Route path='/*' element={<NotFound />} />
