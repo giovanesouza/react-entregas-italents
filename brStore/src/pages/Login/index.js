@@ -1,3 +1,4 @@
+import { ButtonSubmit } from "../../components/ButtonSubmit";
 import FormGroupLogin from "../../components/FormGroup/login";
 import { useRef, useState } from "react";
 
@@ -64,7 +65,8 @@ const Login = () => {
                     }
                 </FormGroupLogin>
 
-                <button type="submit" className='w-full bg-gray-200 text-base font-semibold text-blue-600 transition-all duration-200 hover:bg-blue-600 hover:text-white rounded-lg p-2 my-4 mx-auto'>Entrar</button>
+                <ButtonSubmit label='Entrar' />
+                
             </form>
         </main>
     );
