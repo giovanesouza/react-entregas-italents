@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
 import Register from './pages/Register';
 import Success from './pages/Register/success';
+import Login from './pages/Login';
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
           <Route index element={<Register />} />
           <Route path='success' element={<Success />} />
         </Route>
+
+          <Route path='/login' element={<Login />} />
 
         {/* Rota para caminhos que não existem */}
         <Route path='/*' element={<NotFound />} />
