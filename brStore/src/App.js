@@ -8,6 +8,9 @@ import MensClothing from './pages/Products/mens-clothing';
 import WomensClothing from './pages/Products/womens-clothing';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
+import Register from './pages/Register';
+import Success from './pages/Register/success';
+
 
 function App() {
   return (
@@ -26,12 +29,18 @@ function App() {
 
         </Route>
 
+
+        <Route path='/register' element={''}>
+          <Route index element={<Register />} />
+          <Route path='success' element={<Success />} />
+        </Route>
+
         {/* Rota para caminhos que não existem */}
         <Route path='/*' element={<NotFound />} />
 
       </Routes>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }
