@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
-import FormGroup from "../../components/FormGroup";
+import FormGroup from "../../components/FormGroup/register";
 import { useNavigate } from "react-router-dom";
+import { ButtonSubmit } from "../../components/ButtonSubmit";
 
 const Register = () => {
 
@@ -44,7 +45,7 @@ const Register = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        navigate('/register/success', {state: fieldValue});
+        navigate('/register/success', { state: fieldValue });
     }
 
     // Altera o type do input password, permitindo a visualização/ocultação da senha
@@ -66,14 +67,17 @@ const Register = () => {
             <form className="w-6/12 mx-auto py-3 sm:w-full" onSubmit={handleSubmit}>
 
                 <FormGroup label='Nome Completo' inputType='text' name='nome' value={fieldValue.nome} onChange={handleChange} />
+
                 <FormGroup label='Data de nascimento' inputType='date' name='dataNasc' value={fieldValue.dataNasc} onChange={handleChange} />
-                <FormGroup label='CPF' inputType='text' name='cpf' value={fieldValue.cpf} max={14} onChange={handleChange} />
-                <FormGroup label='Telefone' inputType='tel' name='telefone' value={fieldValue.telefone} max={15} onChange={handleChange} />
+
+                <FormGroup label='CPF' inputType='text' name='cpf' value={fieldValue.cpf} max={11} onChange={handleChange} />
+
+                <FormGroup label='Telefone' inputType='tel' name='telefone' value={fieldValue.telefone} max={11} onChange={handleChange} />
+
                 <FormGroup label='E-mail' inputType='email' name='email' value={fieldValue.email} onChange={handleChange} />
 
-                <div className="flex items-center relative mb-2 sm:flex-col sm:mb-5" id="input-password">
-                    <label htmlFor="senha" className='w-2/6 text-gray-500 font-semibold sm:w-full'>Senha</label>
-                    <input type="password" name="senha" id="senha" maxLength={50} className='w-4/6 text-sm text-gray-500 border border-gray-400 rounded-xl outline-none py-1 px-3 sm:w-full' value={fieldValue.senha} onChange={handleChange} ref={passwordInput} />
+
+                <FormGroup label='Senha' inputType='password' name='senha' value={fieldValue.senha} max={50} onChange={handleChange} refInput={passwordInput}>
 
                     {
                         seePassword ? (<i className="bi bi-eye-fill absolute right-3 sm:top-7 text-gray-600 cursor-pointer" onClick={handleClick}></i>)
@@ -81,9 +85,11 @@ const Register = () => {
                             (<i className="bi bi-eye-slash-fill absolute right-3 sm:top-7 text-gray-600 cursor-pointer" onClick={handleClick}></i>)
                     }
 
-                </div>
+                </FormGroup>
 
-                <button type="submit" className='w-full bg-gray-200 text-base font-semibold text-blue-600 transition-all duration-200 hover:bg-blue-600 hover:text-white rounded-lg p-2 my-4 mx-auto'>Cadastrar</button>
+                
+                <ButtonSubmit label='Cadastrar' />
+
             </form>
         </main>
 
