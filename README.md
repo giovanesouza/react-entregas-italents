@@ -52,5 +52,5 @@ A aplicação 'rodará' no endereço [http://localhost:3000](http://localhost:30
 ![Checkout](screenshots/checkout.jpg "Checkout")
 
 ### Página de rota inexistente
-![Checkout](screenshots/notfound.jpg "Checkout")
+![Tela notfound](screenshots/notfound.jpg "Rota inexistente")
 
