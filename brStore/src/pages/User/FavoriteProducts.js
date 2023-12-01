@@ -30,7 +30,7 @@ const FavoriteProducts = () => {
                         :
                         favProducts.map(product => (
                             <ProductCard
-                                nome={product.nome}
+                                nome={product.nomeProd}
                                 img={product.imagem}
                                 precoAnterior={product.precoAntigo.toFixed(2)}
                                 precoAtual={product.precoNovo.toFixed(2)}
