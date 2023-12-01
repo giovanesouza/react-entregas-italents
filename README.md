@@ -27,7 +27,30 @@ A aplicação 'rodará' no endereço [http://localhost:3000](http://localhost:30
 - Página de erro 404 para rotas não encontradas;
 - Todas as páginas estilizadas;
 
-## Resultado obtido
 
-![](screenshots/ "")
+## Resultados obtidos
+
+### Página inicial da aplicação
+![Página inicial](screenshots/index.jpg "Página inicial")
+
+### Listagem de produto por categoria (Ex.: Categoria dos eletrônicos)
+![Categoria de produtos eletrônicos](screenshots/categoria-eletronicos.jpg "Categoria: Eletrônicos")
+
+### Exibição de produto buscado
+![Exibição de produto buscado](screenshots/busca-personalizada.jpg "Exibição de produto buscado")
+
+### Página de cadastro de usuários
+![Tela de cadastro](screenshots/cadastro.jpg "Tela de cadastro")
+
+### Página de Login
+![Tela de login](screenshots/login.jpg "Tela de login")
+
+### Página de produtos favoritos
+![Tela de produtos favoritos](screenshots/produtos-favoritos.jpg "Tela de produtos favoritos")
+
+### Página de Checkout
+![Checkout](screenshots/checkout.jpg "Checkout")
+
+### Página de rota inexistente
+![Checkout](screenshots/notfound.jpg "Checkout")
 
