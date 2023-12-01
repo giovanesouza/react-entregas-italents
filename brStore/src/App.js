@@ -13,6 +13,7 @@ import Success from './pages/Register/success';
 import Login from './pages/Login';
 import FavoriteProducts from './pages/User/FavoriteProducts';
 import Checkout from './pages/Checkout';
+import { Product } from './pages/Product';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
 
         </Route>
 
+        <Route path='/product/:nome' element={<Product />} />
 
         <Route path='/register' element={''}>
           <Route index element={<Register />} />

@@ -4,13 +4,13 @@ header {
 }
 
 
-input[name="search"],
+input,
 .bi-search {
     color: var(--blue);
 }
 
 
-input[name="search"]::placeholder {
+input::placeholder {
     color: #215BA8;
 }
 

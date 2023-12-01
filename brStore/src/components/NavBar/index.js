@@ -1,11 +1,45 @@
 import './style.css';
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { allProducts } from '../../Database/database';
+import { FindProductsByInitials } from './FindProduct';
+
 
 const Navbar = () => {
-
     // State utilizado para destacar o menu (link ativo)
     const [menuTab, setMenuTab] = useState('');
+    
+    // State para pegar o valor do input
+    const [searchInput, setSearchInput] = useState('');
+
+    const navigate = useNavigate();
+
+
+    // Captura as informações do input
+    const handleChange = (event) => {
+        setSearchInput(event.target.value);
+    }
+
+
+    let iniciaisProcuradas = '';
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        console.log('Buscando produtos...');
+        iniciaisProcuradas = searchInput;
+
+        const produtosEncontrados = FindProductsByInitials(allProducts, iniciaisProcuradas);
+
+        if (produtosEncontrados) {
+            navigate(`/product/${searchInput}`, { state: produtosEncontrados })
+        } else {
+            navigate(`/product/${searchInput}`, { state: [] });
+            console.log('Nenhum produto encontrado com essas iniciais.');
+        }
+
+        setSearchInput(''); // limpa input de busca
+    }
 
     return (
         <header className='w-screen p-2'>
@@ -17,10 +51,10 @@ const Navbar = () => {
                     <Link to="/" onClick={() => setMenuTab('')}>BrStore</Link>
                 </div>
 
-                <form className='w-2/4 text-center relative sm:hidden'>
+                <form className='w-2/4 text-center relative sm:hidden' onSubmit={handleSubmit}>
 
-                    <input type="text" name="search" placeholder="Buscar produto..."
-                        className='w-full border-0 outline-0 rounded-2xl py-2 px-5' />
+                    <input type="text" placeholder="Buscar produto..."
+                        className='w-full border-0 outline-0 rounded-2xl py-2 px-5' value={searchInput} onChange={handleChange} />
 
                     <i className="bi bi-search absolute top-2 right-7" />
                 </form>
@@ -55,14 +89,14 @@ const Navbar = () => {
                             <li>Eletrônicos</li>
                         </Link>
 
-                        <Link to="/products/jewelery" className={menuTab === 'jewelery' ? 'text-base text-yellow-200' : 'text-base hover:text-yellow-200 md:text-sm'}   onClick={() => setMenuTab('jewelery')}>
+                        <Link to="/products/jewelery" className={menuTab === 'jewelery' ? 'text-base text-yellow-200' : 'text-base hover:text-yellow-200 md:text-sm'} onClick={() => setMenuTab('jewelery')}>
                             <li>Jóias</li>
                         </Link>
                         <Link to="/products/mens-clothing" className={menuTab === 'mens-clothing' ? 'text-base text-yellow-200' : 'text-base hover:text-yellow-200 md:text-sm'} onClick={() => setMenuTab('mens-clothing')}>
                             <li>Roupas Masculinas</li>
                         </Link>
                         <Link to="/products/womens-clothing" className={menuTab === 'womens-clothing' ? 'text-base text-yellow-200' : 'text-base hover:text-yellow-200 md:text-sm'}
-                        onClick={() => setMenuTab('womens-clothing')}>
+                            onClick={() => setMenuTab('womens-clothing')}>
                             <li>Roupas Feminas</li>
                         </Link>
 
