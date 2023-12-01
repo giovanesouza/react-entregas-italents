@@ -14,7 +14,7 @@ const Success = () => {
             <div className="mb-5">
 
                 <h2 className="text-xl text-blue-600 my-4">
-                    <i class="bi bi-clipboard-check-fill mr-2"></i>
+                    <i className="bi bi-clipboard-check-fill mr-2"></i>
                     Dados cadastrais:
                 </h2>
 
@@ -27,12 +27,12 @@ const Success = () => {
 
 
                 <h4 className="bg-red-500 text-white text-center font-bold rounded-md my-3 p-1">
-                    <i class="bi bi-pencil-square mr-2"></i>
+                    <i className="bi bi-pencil-square mr-2"></i>
                     Salve os seus dados em local seguro!
                 </h4>
 
                 <Link to='/login' className="inline-block w-full  bg-gray-500 hover:bg-blue-600 text-white text-center font-bold rounded-md p-1">
-                    <i class="bi bi-person-fill-up mr-2"></i>
+                    <i className="bi bi-person-fill-up mr-2"></i>
                     Clique aqui para realizar o login
                 </Link>
 

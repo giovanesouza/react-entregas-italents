@@ -47,7 +47,7 @@ const Login = () => {
         <main className="w-11/12 mx-auto">
 
             <h1 className='w-full flex flex-col items-center justify-center text-4xl font-semibold text-gray-600 my-4'>
-                <i class="bi bi-person-fill text-4xl text-blue-800"></i>
+                <i className="bi bi-person-fill text-4xl text-blue-800"></i>
                 Login do cliente
             </h1>
 

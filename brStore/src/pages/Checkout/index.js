@@ -27,7 +27,7 @@ const Checkout = () => {
                     :
                             items.map(item => (
                     <tr className="text-gray-600" key={item.id}>
-                        <td className="flex items-center gap-2 py-2"><img src={item.imagem} alt={item.nome} class='w-16' /> {item.nome}</td>
+                        <td className="flex items-center gap-2 py-2"><img src={item.imagem} alt={item.nome} className='w-16' /> {item.nome}</td>
                         <td className="text-center">R$ {item.precoUnit}</td>
                         <td className="text-center">
                             <Count qtd={item.qtd} />
