@@ -6,7 +6,7 @@ import camera from '../../assets/images/products/eletronicos/camera-canon.jpg';
 const Checkout = () => {
 
     const items = [
-        { nome: 'Câmera Canon', imagem: camera, precoUnit: 15.99, qtd: 1, precoTotal: 15.99 },
+        { id: 1, nome: 'Câmera Canon', imagem: camera, precoUnit: 15.99, qtd: 1, precoTotal: 15.99 },
     ];
 
 
@@ -25,8 +25,8 @@ const Checkout = () => {
                                 </tr>
                     )
                     :
-                            items.map(item => (
-                    <tr className="text-gray-600" key={item.id}>
+                            items.map((item, index) => (
+                    <tr className="text-gray-600" key={index}>
                         <td className="flex items-center gap-2 py-2"><img src={item.imagem} alt={item.nome} className='w-16' /> {item.nome}</td>
                         <td className="text-center">R$ {item.precoUnit}</td>
                         <td className="text-center">
