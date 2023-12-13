@@ -5,7 +5,7 @@ export function FindProductsByInitials(array, iniciais) {
 
     iniciais = iniciais.toUpperCase(); // Certifique-se de lidar com maiúsculas e minúsculas da mesma forma
     for (const produto of array) {
-        const nome = produto.nomeProd.toUpperCase();
+        const nome = produto.title.toUpperCase();
         if (nome.startsWith(iniciais)) {
             produtosEncontradosLista.push(produto); // Adiciona o produto à lista quando as iniciais correspondem
         }

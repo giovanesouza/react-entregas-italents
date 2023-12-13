@@ -1,9 +1,9 @@
 import './style.css';
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { allProducts } from '../../Database/database';
 import { FindProductsByInitials } from './FindProduct';
 import { AuthContext } from '../../context/AuthContext';
+import { useStoreAPI } from '../../hooks/useStoreAPI';
 
 
 const Navbar = () => {
@@ -17,6 +17,8 @@ const Navbar = () => {
     console.log(userLogged)
 
     const navigate = useNavigate();
+
+    const allProducts = useStoreAPI();
 
 
     // Captura as informações do input
