@@ -15,13 +15,14 @@ import FavoriteProducts from './pages/User/FavoriteProducts';
 import Checkout from './pages/Checkout';
 import { Product } from './pages/Product';
 import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 
 function App() {
   return (
     <>
       <AuthProvider>
-        
+
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
@@ -45,7 +46,19 @@ function App() {
 
           <Route path='/login' element={<Login />} />
 
-          <Route path='/user/favorite-products' element={<FavoriteProducts />} />
+          {/* ROTA PRIVADA
+          Ao acessar a rota '//user/favorite-products' será verificado se o usuário está logado 
+          
+          logado? -> Renderiza os prod favoritos
+          se falso -> Renderiza a login
+          
+          */}
+          <Route path='/user/favorite-products' element={
+            <ProtectedRoute>
+              <FavoriteProducts />
+            </ProtectedRoute>
+         } />
+
           <Route path='/checkout' element={<Checkout />} />
 
           {/* Rota para caminhos que não existem */}
