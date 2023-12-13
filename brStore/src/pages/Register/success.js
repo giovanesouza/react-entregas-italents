@@ -19,9 +19,9 @@ const Success = () => {
                 </h2>
 
                 <p className="text-base text-gray-600"><strong>Nome:</strong> {state.nome}</p>
-                <p className="text-base text-gray-600"><strong>Data de nascimento: </strong> <input type='date' value={state.dataNasc} readOnly /></p>
-                <p className="text-base text-gray-600"><strong>CPF: </strong> {state.cpf}</p>
-                <p className="text-base text-gray-600"><strong>Telefone: </strong> {state.telefone}</p>
+                {/* <p className="text-base text-gray-600"><strong>Data de nascimento: </strong> <input type='date' value={state.dataNasc} readOnly /></p> */}
+                {/* <p className="text-base text-gray-600"><strong>CPF: </strong> {state.cpf}</p> */}
+                {/* <p className="text-base text-gray-600"><strong>Telefone: </strong> {state.telefone}</p> */}
                 <p className="text-base text-gray-600"><strong>E-mail: </strong> {state.email}</p>
                 <p className="text-base text-gray-600"><strong>Senha: </strong> <input type='password' value={state.senha} readOnly /></p>
 

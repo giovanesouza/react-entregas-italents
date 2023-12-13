@@ -1,12 +1,13 @@
 import { useState, useRef } from "react";
 import FormGroup from "../../components/FormGroup/register";
-import { useNavigate } from "react-router-dom";
 import { ButtonSubmit } from "../../components/ButtonSubmit";
+import useUserCRUD from "../../hooks/useUserCRUD";
+
 
 const Register = () => {
 
-    // Permite navegar entre páginas levando ou não um state
-    const navigate = useNavigate();
+    // Utilizado para o CRUD do usuário
+    const { createUser } = useUserCRUD();
 
     // Utilizado para pegar o input password
     const passwordInput = useRef(null);
@@ -20,11 +21,13 @@ const Register = () => {
     // Objeto com os campos utilizados para pegar as informações do usuário
     const [fieldValue, setFieldValue] = useState({
         nome: "",
-        dataNasc: "",
-        cpf: "",
-        telefone: "",
+        // dataNasc: "",
+        // cpf: "",
+        // telefone: "",
         email: "",
-        senha: ""
+        senha: "", 
+        imagem: "https://static.vecteezy.com/system/resources/thumbnails/024/983/914/small/simple-user-default-icon-free-png.png",
+        admin: false
     });
 
 
@@ -45,7 +48,8 @@ const Register = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        navigate('/register/success', { state: fieldValue });
+        createUser(fieldValue);
+
     }
 
     // Altera o type do input password, permitindo a visualização/ocultação da senha
@@ -68,11 +72,11 @@ const Register = () => {
 
                 <FormGroup label='Nome Completo' inputType='text' name='nome' value={fieldValue.nome} onChange={handleChange} />
 
-                <FormGroup label='Data de nascimento' inputType='date' name='dataNasc' value={fieldValue.dataNasc} onChange={handleChange} />
+                {/* <FormGroup label='Data de nascimento' inputType='date' name='dataNasc' value={fieldValue.dataNasc} onChange={handleChange} /> */}
 
-                <FormGroup label='CPF' inputType='text' name='cpf' value={fieldValue.cpf} max={11} onChange={handleChange} />
+                {/* <FormGroup label='CPF' inputType='text' name='cpf' value={fieldValue.cpf} max={11} onChange={handleChange} /> */}
 
-                <FormGroup label='Telefone' inputType='tel' name='telefone' value={fieldValue.telefone} max={11} onChange={handleChange} />
+                {/* <FormGroup label='Telefone' inputType='tel' name='telefone' value={fieldValue.telefone} max={11} onChange={handleChange} /> */}
 
                 <FormGroup label='E-mail' inputType='email' name='email' value={fieldValue.email} onChange={handleChange} />
 
