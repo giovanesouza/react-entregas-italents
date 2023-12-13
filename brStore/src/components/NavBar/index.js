@@ -1,16 +1,20 @@
 import './style.css';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { allProducts } from '../../Database/database';
 import { FindProductsByInitials } from './FindProduct';
+import { AuthContext } from '../../context/AuthContext';
 
 
 const Navbar = () => {
     // State utilizado para destacar o menu (link ativo)
     const [menuTab, setMenuTab] = useState('');
-    
+
     // State para pegar o valor do input
     const [searchInput, setSearchInput] = useState('');
+
+    const { userLogged, logoutUser } = useContext(AuthContext);
+    console.log(userLogged)
 
     const navigate = useNavigate();
 
@@ -61,14 +65,29 @@ const Navbar = () => {
 
                 <div className="w-1/4 flex items-center justify-end gap-4">
 
-                    <div className="text-center">
-                        <div className="text-sm font-bold md:text-xs">Seja bem vindo(a)!</div>
-                        <div>
-                            <Link to="/login" className="text-xs">Entre</Link>
-                            <span className='px-1'>ou</span>
-                            <Link to="/register" className="text-xs text-white">Cadastre-se</Link>
-                        </div>
-                    </div>
+                    {/* Verifica se o usuário está logado e renderiza de forma dinâmica */}
+                    {userLogged ?
+                        (
+                            <div class="text-center text-sm">
+                                <div className="md:text-xs">Olá, <strong>Nome</strong></div>
+
+                                <div className='cursor-pointer' onClick={logoutUser}>
+                                    Sair
+                                </div>
+                            </div>
+                        )
+                        :
+                        (
+                            <div className="text-center">
+                                <div className="text-sm font-bold md:text-xs">Seja bem vindo(a)!</div>
+                                <div>
+                                    <Link to="/login" className="text-xs">Entre</Link>
+                                    <span className='px-1'>ou</span>
+                                    <Link to="/register" className="text-xs text-white">Cadastre-se</Link>
+                                </div>
+                            </div>
+                        )
+                    }
 
                     <div>
                         <i className="bi bi-person-circle text-3xl" />
