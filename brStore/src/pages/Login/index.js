@@ -1,17 +1,23 @@
 import { ButtonSubmit } from "../../components/ButtonSubmit";
 import FormGroupLogin from "../../components/FormGroup/login";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useLocation } from "react-router-dom";
 
 
 const Login = () => {
 
+    // Permite pegar a função que foi passada no contexto
+    const { loginUser } = useContext(AuthContext);
+
+    // Resposta da requisição
+    const { state } = useLocation();
+
     // Utilizado para pegar o input password
     const passwordInput = useRef(null);
-    // console.log(passwordInput);
 
     // Utilizado para modificar o icon de visualização de senha
     const [seePassword, setSeePassword] = useState(false);
-    // console.log(seePassword)
 
 
     // Objeto com os campos utilizados para pegar as informações do usuário
@@ -22,8 +28,6 @@ const Login = () => {
 
     // A cada mudança nos inputs, captura o texto digitado
     const handleChange = (event) => {
-        // console.log(event.target.name, event.target.value); // Pega o nome e valor do input que está onChange e imprime no console
-
         setFieldValue({
             ...fieldValue, // valor do state é espalhado neste objeto
             [event.target.name]: event.target.value // atualiza as informações dinamicamente
@@ -36,12 +40,19 @@ const Login = () => {
     const handleClick = () => {
         const inputElement = passwordInput.current;
         const inputType = inputElement.getAttribute('type');
-        // console.log(inputType);
 
         inputElement.setAttribute('type', inputType === 'password' ? 'text' : 'password');
 
         setSeePassword(!seePassword);
     };
+
+    // Sempre que for fazer uma requisição, utilizar função assíncrona (async)
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        // Chama a função de login (do context) e passa os valores do form
+        loginUser(fieldValue);
+    }
 
     return (
         <main className="w-11/12 mx-auto">
@@ -51,7 +62,12 @@ const Login = () => {
                 Login do cliente
             </h1>
 
-            <form className="w-80 mx-auto my-8">
+            <form className="w-80 mx-auto my-8" onSubmit={handleSubmit}>
+
+                {/* Exibe msg caso a resposta seja != de ok */}
+                <div className="text-center bg-red-500 text-white font-bold rounded-lg mb-5">
+                    {state}
+                </div>
 
                 {/* Input de email */}
                 <FormGroupLogin label='E-mail' inputType="email" name='email' value={fieldValue.email} onChange={handleChange} />
@@ -66,8 +82,9 @@ const Login = () => {
                 </FormGroupLogin>
 
                 <ButtonSubmit label='Entrar' />
-                
+
             </form>
+
         </main>
     );
 }

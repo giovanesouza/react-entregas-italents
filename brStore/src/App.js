@@ -14,43 +14,48 @@ import Login from './pages/Login';
 import FavoriteProducts from './pages/User/FavoriteProducts';
 import Checkout from './pages/Checkout';
 import { Product } from './pages/Product';
+import { AuthProvider } from './context/AuthContext';
 
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
+      <AuthProvider>
+        
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />} />
 
-        {/* Rotas aninhadas */}
-        <Route path='/products' element={''}>
+          {/* Rotas aninhadas */}
+          <Route path='/products' element={''}>
 
-          <Route path='electronics' element={<Electronics />} />
-          <Route path='jewelery' element={<Jewelery />} />
-          <Route path='mens-clothing' element={<MensClothing />} />
-          <Route path='womens-clothing' element={<WomensClothing />} />
+            <Route path='electronics' element={<Electronics />} />
+            <Route path='jewelery' element={<Jewelery />} />
+            <Route path='mens-clothing' element={<MensClothing />} />
+            <Route path='womens-clothing' element={<WomensClothing />} />
 
-        </Route>
+          </Route>
 
-        <Route path='/product/:nome' element={<Product />} />
+          <Route path='/product/:nome' element={<Product />} />
 
-        <Route path='/register' element={''}>
-          <Route index element={<Register />} />
-          <Route path='success' element={<Success />} />
-        </Route>
+          <Route path='/register' element={''}>
+            <Route index element={<Register />} />
+            <Route path='success' element={<Success />} />
+          </Route>
 
-        <Route path='/login' element={<Login />} />
+          <Route path='/login' element={<Login />} />
 
-        <Route path='/user/favorite-products' element={<FavoriteProducts />} />
-        <Route path='/checkout' element={<Checkout />} />
+          <Route path='/user/favorite-products' element={<FavoriteProducts />} />
+          <Route path='/checkout' element={<Checkout />} />
 
-        {/* Rota para caminhos que não existem */}
-        <Route path='/*' element={<NotFound />} />
+          {/* Rota para caminhos que não existem */}
+          <Route path='/*' element={<NotFound />} />
 
-      </Routes>
+        </Routes>
 
-      <Footer />
+        <Footer />
+
+      </AuthProvider>
     </>
   );
 }
