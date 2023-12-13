@@ -7,15 +7,14 @@ const FavoriteProducts = () => {
 
     // Lista de produtos
     const [favProducts, SetfavProducts] = useState([
-        {
-            id: 1,
-            nomeProd: "Câmera Digital EOS, Canon.",
-            precoAntigo: 2899.40,
-            precoNovo: 2500.99,
-            descricao: "Câmera Digital EOS, Canon, Preto, 23 x 14 x 17 cm",
-            imagem: `${camera}`,
-            categoria: "eletronicos"
-        },
+        // {
+        //     id: 1,
+        //     title: "Câmera Digital EOS, Canon.",
+        //     price: 2899.40,
+        //     descricao: "Câmera Digital EOS, Canon, Preto, 23 x 14 x 17 cm",
+        //     image: `${camera}`,
+        //     categoria: "eletronicos"
+        // },
     ]);
 
 
@@ -30,10 +29,10 @@ const FavoriteProducts = () => {
                         :
                         favProducts.map(product => (
                             <ProductCard
-                                nome={product.nomeProd}
-                                img={product.imagem}
-                                precoAnterior={product.precoAntigo.toFixed(2)}
-                                precoAtual={product.precoNovo.toFixed(2)}
+                                nome={product.title}
+                                img={product.image}
+                                precoAnterior={(product.price * 5).toFixed(2)}
+                                precoAtual={(product.price * 3).toFixed(2)}
                                 key={product.id}
                             />
                         ))
