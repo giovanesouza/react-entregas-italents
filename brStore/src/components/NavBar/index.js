@@ -68,7 +68,7 @@ const Navbar = () => {
                     {/* Verifica se o usuário está logado e renderiza de forma dinâmica */}
                     {userLogged ?
                         (
-                            <div class="text-center text-sm">
+                            <div className="text-center text-sm">
                                 <div className="md:text-xs">Olá, <strong>Nome</strong></div>
 
                                 <div className='cursor-pointer' onClick={logoutUser}>
