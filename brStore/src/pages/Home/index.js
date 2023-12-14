@@ -13,12 +13,9 @@ const Home = () => {
 
                 {
                     allProducts.map(product => (
-
+                      
                         <ProductCard
-                            nome={product.title.slice(0, 25)}
-                            img={product.image}
-                            precoAnterior={(product.price * 5).toFixed(2)}
-                            precoAtual={(product.price * 3).toFixed(2)}
+                            product={product}
                             key={product.id}
                         />
 

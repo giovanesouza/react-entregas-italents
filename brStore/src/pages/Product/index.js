@@ -17,7 +17,9 @@ export const Product = () => {
                     :
                     state.map(prod => (
 
-                        <ProductCard nome={prod.title} img={prod.image} precoAnterior={(prod.price * 5).toFixed(2)} precoAtual={(prod.price * 3).toFixed(2)} key={prod.id} />
+                        <ProductCard 
+                        product={prod}
+                        key={prod.id} />
 
                     ))
             }
