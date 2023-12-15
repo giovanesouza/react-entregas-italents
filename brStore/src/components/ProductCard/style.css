@@ -6,6 +6,9 @@
     border-radius: .5rem;
     margin-bottom: 1rem;
     transition: all .5s ease-in-out;
+
+    position: relative;
+    user-select: none;
 }
 
 .product-card:hover {
