@@ -1,5 +1,5 @@
 import './style.css';
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FindProductsByInitials } from './FindProduct';
 import { AuthContext } from '../../context/AuthContext';
@@ -14,7 +14,7 @@ const Navbar = () => {
     const [searchInput, setSearchInput] = useState('');
 
     const { userLogged, logoutUser } = useContext(AuthContext);
-    console.log(userLogged)
+    // console.log(userLogged)
 
     const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const Navbar = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log('Buscando produtos...');
+        // console.log('Buscando produtos...');
         iniciaisProcuradas = searchInput;
 
         const produtosEncontrados = FindProductsByInitials(allProducts, iniciaisProcuradas);
@@ -41,10 +41,20 @@ const Navbar = () => {
             navigate(`/product/${searchInput}`, { state: produtosEncontrados })
         } else {
             navigate(`/product/${searchInput}`, { state: [] });
-            console.log('Nenhum produto encontrado com essas iniciais.');
+            // console.log('Nenhum produto encontrado com essas iniciais.');
         }
 
         setSearchInput(''); // limpa input de busca
+    }
+
+    const userSettinsElement = useRef(null);
+    // console.log(userSettinsElement);
+
+    function showHiddenUserSettingsMenu() {
+        const menu = userSettinsElement.current;
+
+        menu.classList.toggle('block');
+        // console.log(menu);
     }
 
     return (
@@ -70,30 +80,51 @@ const Navbar = () => {
                     {/* Verifica se o usuário está logado e renderiza de forma dinâmica */}
                     {userLogged ?
                         (
-                            <div className="text-center text-sm">
-                                <div className="md:text-xs">Olá, <strong>Nome</strong></div>
+                            <>
+                                <div className="text-center text-sm">
+                                    <div className="md:text-xs">Olá, <strong>Nome</strong></div>
 
-                                <div className='cursor-pointer' onClick={logoutUser}>
-                                    Sair
+                                    <div className='cursor-pointer' onClick={logoutUser}>
+                                        Sair
+                                    </div>
                                 </div>
-                            </div>
+
+                                <div className='text-center relative'>
+
+                                    <div className='flex items-center gap-1 cursor-pointer' id='user-settings'
+                                        onMouseOver={showHiddenUserSettingsMenu}>
+                                        <i className="bi bi-person-circle text-3xl"></i>
+                                        <i className="bi bi-caret-down-fill"></i>
+                                    </div>
+
+                                    <ul id='user-menu-settings' ref={userSettinsElement}>
+                                        <Link to=''><li>Meus Pedidos</li></Link>
+                                        <Link to=''><li>Info. cadastrais</li></Link>
+                                    </ul>
+
+                                </div>
+                            </>
                         )
                         :
                         (
-                            <div className="text-center">
-                                <div className="text-sm font-bold md:text-xs">Seja bem vindo(a)!</div>
-                                <div>
-                                    <Link to="/login" className="text-xs">Entre</Link>
-                                    <span className='px-1'>ou</span>
-                                    <Link to="/register" className="text-xs text-white">Cadastre-se</Link>
+                            <>
+                                <div className="text-center">
+                                    <div className="text-sm font-bold md:text-xs">Seja bem vindo(a)!</div>
+                                    <div>
+                                        <Link to="/login" className="text-xs">Entre</Link>
+                                        <span className='px-1'>ou</span>
+                                        <Link to="/register" className="text-xs text-white">Cadastre-se</Link>
+                                    </div>
                                 </div>
-                            </div>
+
+                                <div>
+                                    <i className="bi bi-person-circle text-3xl" />
+                                </div>
+                            </>
                         )
                     }
 
-                    <div>
-                        <i className="bi bi-person-circle text-3xl" />
-                    </div>
+
 
                 </div>
 
