@@ -1,25 +1,16 @@
 import { useState } from "react";
 import ProductList from "../../components/ProductList/ProductList";
 import ProductCard from "../../components/ProductCard";
-import camera from '../../assets/images/products/eletronicos/camera-canon.jpg'
 
 const FavoriteProducts = () => {
 
     // Lista de produtos
     const [favProducts, SetfavProducts] = useState([
-        // {
-        //     id: 1,
-        //     title: "Câmera Digital EOS, Canon.",
-        //     price: 2899.40,
-        //     descricao: "Câmera Digital EOS, Canon, Preto, 23 x 14 x 17 cm",
-        //     image: `${camera}`,
-        //     categoria: "eletronicos"
-        // },
     ]);
 
 
     return (
-        <main className="w-screen p-2">
+        <main className="w-11/12 p-2">
 
             <ProductList nomeLista='Favoritos'>
 
