@@ -57,9 +57,13 @@ function App() {
             <ProtectedRoute>
               <FavoriteProducts />
             </ProtectedRoute>
-         } />
+          } />
 
-          <Route path='/checkout' element={<Checkout />} />
+          <Route path='/checkout' element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          } />
 
           {/* Rota para caminhos que não existem */}
           <Route path='/*' element={<NotFound />} />
