@@ -11,7 +11,7 @@ export const InfoPayment = () => {
             {/* TotalItems */}
             <div className='w-full flex justify-between items-center text-gray-600 font-bold my-2 p-2'>
                 <span className="label-info">Total itens</span>
-                <span className="label-value" id="totalBagQuantityItems">3</span>
+                <span className="label-value" id="totalBagQuantityItems">0</span>
             </div>
 
 
