@@ -24,8 +24,7 @@ A aplicação 'rodará' no endereço [http://localhost:3000](http://localhost:30
 
 - No mínimo 2 páginas;
 - Página de autenticação;
-- Utilização de
-- useContext , UseState e UseEffect;
+- Utilização de useContext, UseState e UseEffect;
 - Rotas privadas;
 - Integração com Api.
 
@@ -46,6 +45,9 @@ A aplicação 'rodará' no endereço [http://localhost:3000](http://localhost:30
 
 ### Página de Login
 ![Tela de login](screenshots/login.jpg "Tela de login")
+
+### Usuário logado - alteração do menu e permissões
+![Usuário logado](screenshots/usuario-logado.jpg "Usuário logado - alteração do menu e permissões")
 
 ### Página de produtos favoritos
 ![Tela de produtos favoritos](screenshots/produtos-favoritos.jpg "Tela de produtos favoritos")
