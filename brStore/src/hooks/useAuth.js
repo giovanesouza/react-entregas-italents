@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginUserApi, getUserById } from "../services/authService";
+import api from '../services/api';
 
 const useAuth = () => {
-    
+
     // Estado que vai indicar se o usuário está ou não logado
     const [userLogged, setUserLogged] = useState(false);
+
+    // Salva as informações completas do usuário vindas do BD
+    const [userFull, setUserFull] = useState({});
 
     // Utilizado para evitar o userLogged como false quando o usuário estiver logado
     const [loading, setloading] = useState(true);
@@ -14,66 +19,95 @@ const useAuth = () => {
 
 
     useEffect(() => {
-        // Busca usuário no localStorage
-        const userInfor = localStorage.getItem('userInfor');
+        // Busca usuário no localStorage e converte para objeto JS
+        const userInfo = JSON.parse(localStorage.getItem('userInfo')); // contem email, id, token
 
-        // Verifica se existir...
-        if (userInfor)
-            setUserLogged(true);
+        // Verifica se existe...
+        if (userInfo) {
 
+            // Add header em todas as chamadas da aplicação quando estiver logado
+            api.defaults.headers.common['Authorization'] = `Bearer ${userInfo.token}`;
 
-        setloading(false); 
-    }, []); 
+            findUserById(userInfo.id);
+
+            setUserLogged(true); // Utilizado caso já esteja logado
+        };
+
+        setloading(false);
+    }, []);
 
 
     // Função para ser utilizada na página de login
     const loginUser = async (inputValues) => {
 
-        const response = await fetch('http://localhost:3000/auth/login', {
+        try {
+            const response = await loginUserApi(inputValues);
+            // console.log('Resposta completa (front): ', response);
 
-            method: 'POST', // Enviando informações do front -> back
-            headers: {
-                // Tipo dos dados enviados (json)
-                'Content-Type': 'application/json'
-            },
-            // Onde as informações (credenciais) serão enviadas
-            body: JSON.stringify(inputValues) // Converte o objeto para JSON
-        });
+            if (response) {
+                // console.log('Dados do usuário logado (front): ', response.data);
 
+                // Salva dados do usuário no localStorage
+                localStorage.setItem('userInfo', JSON.stringify(response.data));
 
-        // Pega a resposta do servidor - .json() -> permite acessar o body da aplicação
-        const data = await response.json();
-        console.log('Dados do usuário: ', data);
+                // Add header em todas as chamadas da aplicação - ao logar
+                api.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
 
-        console.log(data.message)
+                // Altera status do usuário -> Logado
+                setUserLogged(true);
 
-        // Verifica se o usuário existe
-        if (response.ok) {
-            // Salva a resposta da API no LocalStorage (persistência dos dados em memória)
-            localStorage.setItem('userInfor', JSON.stringify(data));
+                navigate('/'); // Redireciona para home
+            }
 
-            // Altera status do usuário -> Logado
-            setUserLogged(true);
-
-            navigate('/'); // Redireciona para home
-        } else {
-            navigate('/login', {state: data.message}); // Chama a rota de login com a message
+        } catch (error) {
+            const err = error.response.data.message;
+            console.error('Erro login (front): ', err);
+            navigate('/login', { state: err }); // Chama a rota de login com a message  de erro
         }
 
-    }
+    };
 
 
     const logoutUser = () => {
         setUserLogged(false); // Estado passa a ser falso (Não logado)
-
         localStorage.clear(); // Limpa o localStorage
-
         navigate('/login'); // Redireciona para pág login
-    }
+    };
+
+
+    const findUserById = async (userId) => {
+        try {
+
+            const response = await getUserById(userId);
+            const data = await response.data;
+
+            const nomes = data.nome.split(' '); // Separa os nomes
+
+            // Dados do usuário formatado
+            const formattedUser = {
+                id: data._id,
+                nomeCompleto: data.nome,
+                nome: nomes[0],
+                email: data.email,
+                imagem: data.imagem,
+                admin: data.admin
+            };
+
+            // console.log('Usuário findByID:', formattedUser);
+
+            setUserFull(formattedUser); // Atualiza a variável de estado com todas as informações do usuário
+            // localStorage.setItem('userFull', JSON.stringify(formattedUser));
+
+        } catch (error) {
+            const err = error.response.data.message;
+            console.error('Erro findById (front): ', err);
+        }
+
+    };
 
 
     // Retorna um objeto com todas as variáveis de estado e funções
-    return { userLogged, loading, loginUser, logoutUser };
+    return { userLogged, userFull, loading, loginUser, logoutUser };
 
 }
 
