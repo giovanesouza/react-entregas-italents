@@ -13,8 +13,10 @@ const Navbar = () => {
     // State para pegar o valor do input
     const [searchInput, setSearchInput] = useState('');
 
-    const { userLogged, logoutUser } = useContext(AuthContext);
+    // Informações passadas via context
+    const { userLogged, userFull, logoutUser } = useContext(AuthContext);
     // console.log(userLogged)
+    console.log('Usuário completo (navbar): ', userFull);
 
     const navigate = useNavigate();
 
@@ -82,7 +84,7 @@ const Navbar = () => {
                         (
                             <>
                                 <div className="text-center text-sm">
-                                    <div className="md:text-xs">Olá, <strong>Nome</strong></div>
+                                    <div className="md:text-xs">Olá, <strong>{userFull.nome}!</strong></div>
 
                                     <div className='cursor-pointer' onClick={logoutUser}>
                                         Sair
