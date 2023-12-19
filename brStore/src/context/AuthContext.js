@@ -10,8 +10,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
 
     // Importa o hooks com suas funcionalidades de forma desestruturada
-    const { userLogged, loading, loginUser, logoutUser } = useAuth();
-
+    const { userLogged, userFull, loading, loginUser, logoutUser } = useAuth();
 
     // Enquanto estiver carregando, renderiza o h1, ao finalizar carrega os componentes children
     if(loading) {
@@ -21,7 +20,7 @@ const AuthProvider = ({ children }) => {
     return (
         // Indica o que será provido por meio da propriedade value
         // Compartilha se o usuário está logado e a função para logar, logout
-        <AuthContext.Provider value={{ userLogged, loginUser, logoutUser }}>
+        <AuthContext.Provider value={{ userLogged, userFull, loginUser, logoutUser }}>
             {children}
         </AuthContext.Provider>
     );
