@@ -1,9 +1,11 @@
-# Atividade 3
+# Atividade 4
+
+> Projeto completo
 
 ## Como executar o projeto?
 
 - [x] Necessário ter o Node, Git e uma IDE instalados na sua máquina;
-- [x] Clone o repositório e acesse a branch `3-atividade-3` (**comandos abaixo**);
+- [x] Clone o repositório e acesse a branch `4-atividade-4` (**comandos abaixo**);
 
 #### Clonando o repositório:
 ```shell
@@ -11,7 +13,7 @@ git clone https://github.com/giovanesouza/react-entregas-italents.git
 ```
 #### Mudando de branch:
 ```shell
-git checkout 3-atividade-3
+git checkout 4-atividade-4
 ```
 
 
@@ -20,13 +22,15 @@ git checkout 3-atividade-3
 A aplicação 'rodará' no endereço [http://localhost:3000](http://localhost:3000).
 
 
-## Atividade 3: Desenvolver uma aplicação que contenha os seguintes tópicos.
+## Atividade 4: Desenvolver uma aplicação que contenha os seguintes tópicos.
 
-- No mínimo 2 páginas;
-- Página de autenticação;
-- Utilização de useContext, UseState e UseEffect;
-- Rotas privadas;
-- Integração com Api.
+- No mínimo 5 páginas OK
+- Autenticação + rotas seguras
+- CRUD completo (Criação, Leitura, Exclusão e Edição)
+- Troca de dados entre rotas via props
+- Troca de estados globais com useContext OK
+- Estilização de todas as páginas com tawindcss
+- Integração com serviço externo via axios consumindo endpoints [GET/POST/PUT/DELETE]
 
 
 ## Resultados obtidos
