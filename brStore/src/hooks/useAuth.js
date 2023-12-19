@@ -11,6 +11,8 @@ const useAuth = () => {
     // Salva as informações completas do usuário vindas do BD
     const [userFull, setUserFull] = useState({});
 
+    const [isAdmin, setIsAdmin] = useState(false);
+
     // Utilizado para evitar o userLogged como false quando o usuário estiver logado
     const [loading, setloading] = useState(true);
 
@@ -19,6 +21,8 @@ const useAuth = () => {
 
 
     useEffect(() => {
+        console.log('COMPONENTE NASCEU USEAUTH!');
+
         // Busca usuário no localStorage e converte para objeto JS
         const userInfo = JSON.parse(localStorage.getItem('userInfo')); // contem email, id, token
 
@@ -27,8 +31,6 @@ const useAuth = () => {
 
             // Add header em todas as chamadas da aplicação quando estiver logado
             api.defaults.headers.common['Authorization'] = `Bearer ${userInfo.token}`;
-
-            findUserById(userInfo.id);
 
             setUserLogged(true); // Utilizado caso já esteja logado
         };
@@ -93,10 +95,12 @@ const useAuth = () => {
                 admin: data.admin
             };
 
-            // console.log('Usuário findByID:', formattedUser);
+            console.log('Usuário findByID:', formattedUser);
 
             setUserFull(formattedUser); // Atualiza a variável de estado com todas as informações do usuário
-            // localStorage.setItem('userFull', JSON.stringify(formattedUser));
+            setIsAdmin(data.admin); // Verifica se é administrador
+
+            localStorage.setItem('userFull', JSON.stringify(formattedUser));
 
         } catch (error) {
             const err = error.response.data.message;
@@ -107,7 +111,7 @@ const useAuth = () => {
 
 
     // Retorna um objeto com todas as variáveis de estado e funções
-    return { userLogged, userFull, loading, loginUser, logoutUser };
+    return { userLogged, userFull, isAdmin, loading, loginUser, logoutUser, findUserById };
 
 }
 

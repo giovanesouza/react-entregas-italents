@@ -1,5 +1,5 @@
 import './style.css';
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FindProductsByInitials } from './FindProduct';
 import { AuthContext } from '../../context/AuthContext';
@@ -14,9 +14,9 @@ const Navbar = () => {
     const [searchInput, setSearchInput] = useState('');
 
     // Informações passadas via context
-    const { userLogged, userFull, logoutUser } = useContext(AuthContext);
+    const { userLogged, userFull, isAdmin, logoutUser } = useContext(AuthContext);
     // console.log(userLogged)
-    console.log('Usuário completo (navbar): ', userFull);
+    // console.log('Usuário completo (navbar): ', userFull);
 
     const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const Navbar = () => {
     // Captura as informações do input
     const handleChange = (event) => {
         setSearchInput(event.target.value);
-    }
+    };
 
 
     let iniciaisProcuradas = '';
@@ -47,7 +47,7 @@ const Navbar = () => {
         }
 
         setSearchInput(''); // limpa input de busca
-    }
+    };
 
     const userSettinsElement = useRef(null);
     // console.log(userSettinsElement);
@@ -95,14 +95,26 @@ const Navbar = () => {
 
                                     <div className='flex items-center gap-1 cursor-pointer' id='user-settings'
                                         onMouseOver={showHiddenUserSettingsMenu}>
-                                        <i className="bi bi-person-circle text-3xl"></i>
+                                        <img className='w-8' src={userFull.imagem !== '' ? userFull.imagem : 'https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png'} alt={userFull.nome} />
                                         <i className="bi bi-caret-down-fill"></i>
                                     </div>
 
-                                    <ul id='user-menu-settings' ref={userSettinsElement}>
-                                        <Link to=''><li>Meus Pedidos</li></Link>
-                                        <Link to=''><li>Info. cadastrais</li></Link>
-                                    </ul>
+                                    {/* SubMenu personalizado com base no tipo de usuário  */}
+                                    {isAdmin ?
+                                        (
+                                            <ul id='user-menu-settings' ref={userSettinsElement}>
+                                                <Link to=''><li>admin</li></Link>
+                                                <Link to=''><li>admin</li></Link>
+                                            </ul>
+
+                                        ) :
+                                        (
+                                            <ul id='user-menu-settings' ref={userSettinsElement}>
+                                                <Link to=''><li>Meus Pedidos</li></Link>
+                                                <Link to=''><li>Info. cadastrais</li></Link>
+                                            </ul>
+                                        )}
+
 
                                 </div>
                             </>
@@ -128,12 +140,12 @@ const Navbar = () => {
 
 
 
-                </div>
+                </div >
 
-            </div>
+            </div >
 
             {/* Header bottom */}
-            <div className="flex items-center justify-between w-11/12 mt-3 mx-auto">
+            <div div className="flex items-center justify-between w-11/12 mt-3 mx-auto" >
 
                 <nav className='w-3/4'>
 
@@ -171,9 +183,9 @@ const Navbar = () => {
 
                 </div>
 
-            </div>
+            </div >
 
-        </header>
+        </header >
     );
 }
 
