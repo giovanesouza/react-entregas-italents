@@ -16,6 +16,7 @@ import Checkout from './pages/Checkout';
 import { Product } from './pages/Product';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './routes/ProtectedRoute';
+import AddProducts from './pages/Admin/Products/addProducts';
 
 
 function App() {
@@ -64,6 +65,17 @@ function App() {
               <Checkout />
             </ProtectedRoute>
           } />
+
+
+
+          {/* Rotas ADMIN */}
+          <Route path='/admin/add-product' element={
+            <ProtectedRoute>
+              <AddProducts />
+            </ProtectedRoute>
+          } />
+
+
 
           {/* Rota para caminhos que não existem */}
           <Route path='/*' element={<NotFound />} />
