@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
-import { findAllCategories } from "../../../services/categoryService"; // Busca no BD
-import { addProductAPI } from "../../../services/productService"; // cadastra produto
+import { findAllCategories } from "../../../../services/categoryService"; // Busca no BD
+import { addProductAPI } from "../../../../services/productService"; // cadastra produto
 import { useNavigate } from 'react-router-dom';
 
 const AddProducts = () => {

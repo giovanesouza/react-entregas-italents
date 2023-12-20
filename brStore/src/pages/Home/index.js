@@ -3,8 +3,7 @@ import ProductCard from '../../components/ProductCard';
 import ProductList from '../../components/ProductList/ProductList';
 import { AuthContext } from '../../context/AuthContext';
 import { findAllProducts, deleteProduct } from '../../services/productService';
-import { Link, useNavigate } from 'react-router-dom';
-import Admin from '../Admin/Products';
+import Admin from '../Admin/Home';
 import ProductListAdmin from '../../components/ProductList/ProductListAdmin';
 
 
@@ -15,9 +14,6 @@ const Home = () => {
 
     // Pega todos os produtos cadastrados no BD
     const [products, setProducts] = useState([]);
-
-    const navigate = useNavigate();
-
 
 
     useEffect(() => {

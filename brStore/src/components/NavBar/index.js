@@ -103,7 +103,7 @@ const Navbar = () => {
                                     {isAdmin ?
                                         (
                                             <ul id='user-menu-settings' ref={userSettinsElement}>
-                                                <Link to=''><li>admin</li></Link>
+                                                <Link to='/admin/panel'><li>Painel</li></Link>
                                                 <Link to=''><li>admin</li></Link>
                                             </ul>
 
