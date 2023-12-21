@@ -1,7 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 /* Recebe os atributos do produto que é passado para a lista por meio da propriedade product */
 const ProductCard = ({ product }) => {
+
+    const navigate = useNavigate();
 
     return (
         <div className="product-card" data-key={product._id}>
@@ -20,11 +23,11 @@ const ProductCard = ({ product }) => {
                 <h4 className="text-lg font-semibold text-blue-800 mb-[.13rem]">{product.nome}</h4>
 
                 <div>
-                    <span className="text-sm text-red-600 line-through">R$ {(product.precoUnitario * 5).toFixed(2)}</span>
+                    <span className="text-sm text-red-600 line-through">R$ {(product.precoUnitario).toFixed(2)}</span>
                 </div>
 
                 <div>
-                    <h5 className="text-lg text-gray-600 mb-[.63rem]">R$ {(product.precoUnitario * 3).toFixed(2)}</h5>
+                    <h5 className="text-lg text-gray-600 mb-[.63rem]">R$ {(product.precoUnitario * 0.8).toFixed(2)}</h5>
                 </div>
 
 
@@ -32,9 +35,10 @@ const ProductCard = ({ product }) => {
 
             <div className='absolute bottom-0 w-full'>
 
-                <span className='inline-block w-full text-center bg-gray-400 text-white text-base font-bold'>R$ {((product.precoUnitario * 5) - (product.precoUnitario * 3)).toFixed(2)} OFF </span>
+                <span className='inline-block w-full text-center bg-gray-400 text-white text-base font-bold'>R$ {((product.precoUnitario) - (product.precoUnitario * 0.8)).toFixed(2)} OFF </span>
 
-                <button className="w-full bg-gray-200 text-gray-600 text-base  rounded-b-md p-[.31rem] transition-all ease-in-out duration-500 hover:bg-blue-600 hover:text-white">
+                <button className="w-full bg-gray-200 text-gray-600 text-base  rounded-b-md p-[.31rem] transition-all ease-in-out duration-500 hover:bg-blue-600 hover:text-white"
+                onClick={() => navigate(`/product-info/${product._id}`)} >
                     <i className="bi bi-bag-fill mr-1" />
                     Adicionar à sacola
                 </button>
