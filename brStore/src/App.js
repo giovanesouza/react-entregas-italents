@@ -2,10 +2,6 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/NavBar';
 import Home from './pages/Home';
-import Electronics from './pages/Products/electronics';
-import Jewelery from './pages/Products/jewelery';
-import MensClothing from './pages/Products/mens-clothing';
-import WomensClothing from './pages/Products/womens-clothing';
 import NotFound from './pages/NotFound';
 import Footer from './components/Footer';
 import Register from './pages/Register';
@@ -13,11 +9,14 @@ import Success from './pages/Register/success';
 import Login from './pages/Login';
 import FavoriteProducts from './pages/User/FavoriteProducts';
 import Checkout from './pages/Checkout';
-import { Product } from './pages/Product';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './routes/ProtectedRoute';
 import AddProducts from './pages/Admin/Products/AddProducts';
 import EditProduct from './pages/Admin/Products/EditProducts';
+import ProductInfo from './pages/Products/ProductInfo';
+import Address from './components/Address';
+import Payment from './components/Payment';
+import Complete from './pages/Complete';
 
 
 function App() {
@@ -29,18 +28,6 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
 
-          {/* Rotas aninhadas */}
-          <Route path='/products' element={''}>
-
-            <Route path='electronics' element={<Electronics />} />
-            <Route path='jewelery' element={<Jewelery />} />
-            <Route path='mens-clothing' element={<MensClothing />} />
-            <Route path='womens-clothing' element={<WomensClothing />} />
-
-          </Route>
-
-          <Route path='/product/:nome' element={<Product />} />
-
           <Route path='/register' element={''}>
             <Route index element={<Register />} />
             <Route path='success' element={<Success />} />
@@ -48,6 +35,7 @@ function App() {
 
           <Route path='/login' element={<Login />} />
 
+          {/* Rotas CLIENTE */}
           {/* ROTA PRIVADA
           Ao acessar a rota '//user/favorite-products' será verificado se o usuário está logado 
           
@@ -61,12 +49,24 @@ function App() {
             </ProtectedRoute>
           } />
 
-          <Route path='/checkout' element={
+          <Route path='/product-info/:id' element={
             <ProtectedRoute>
-              <Checkout />
+              <ProductInfo />
             </ProtectedRoute>
           } />
 
+
+          {/* Rota aninhada */}
+          <Route path='/checkout' element={<Checkout />}>
+            <Route path='address' element={<Address /> } />
+            <Route path='payment' element={<Payment /> } />
+          </Route>
+
+          <Route path='/complete' element={
+            <ProtectedRoute>
+              <Complete />
+            </ProtectedRoute>
+          } />
 
 
           {/* Rotas ADMIN */}
@@ -91,7 +91,7 @@ function App() {
 
         <Footer />
 
-      </AuthProvider>
+      </AuthProvider >
     </>
   );
 }
