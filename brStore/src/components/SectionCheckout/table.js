@@ -1,13 +1,14 @@
-export const Table = ({children}) => {
+export const Table = ({ children }) => {
     return (
-            <table className="w-full mt-3">
+        <div className="max-w-full overflow-x-auto mt-3">
+            <table className="w-full md:w-screen border-b-2">
                 <thead>
-                    <tr className="text-gray-600 text-base">
-                        <th>Produto</th>
-                        <th>Preço unitário</th>
-                        <th>Quantidade</th>
-                        <th>Preço total</th>
-                        <th>Remover item</th>
+                    <tr className="text-gray-600 md:text-xs 2xl:text-base">
+                        <th className="max-w-max">Produto</th>
+                        <th className="max-w-max">Preço unitário</th>
+                        <th className="max-w-max">Quantidade</th>
+                        <th className="max-w-xs">Preço total</th>
+                        <th className="max-w-xs">Remover item</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -15,5 +16,6 @@ export const Table = ({children}) => {
                     {children}
                 </tbody>
             </table>
+        </div>
     );
 }

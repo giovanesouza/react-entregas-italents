@@ -1,8 +1,6 @@
 import { SectionCheckout } from "../../components/SectionCheckout";
 import { Table } from "../../components/SectionCheckout/table";
 import { useEffect, useState } from "react";
-import { sendCart } from "../../services/orderService";
-
 
 const Checkout = () => {
 
@@ -18,6 +16,11 @@ const Checkout = () => {
     // Toda vez que acessar o componente carrinho, lista os produtos adicionados
     useEffect(() => {
 
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        if (!userInfo) {
+            localStorage.setItem('productCart', JSON.stringify([]));
+        };
+
         const storageCart = JSON.parse(localStorage.getItem('productCart'));
         setProductsCart(storageCart);
 
@@ -28,7 +31,7 @@ const Checkout = () => {
 
     }, []);
 
-    
+
     // Remove produto do carrinho
     const remove = (id) => {
         const storageCart = JSON.parse(localStorage.getItem('productCart'));
@@ -69,7 +72,7 @@ const Checkout = () => {
                                     <td className="text-center">R$ {(product.total.toFixed(2))}</td>
                                     <td className="text-center text-red-600">
                                         <i className="bi bi-trash3-fill cursor-pointer"
-                                        onClick={() => remove(product._id)}></i>
+                                            onClick={() => remove(product._id)}></i>
                                     </td>
                                 </tr>
                             ))
