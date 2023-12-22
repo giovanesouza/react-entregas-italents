@@ -1,13 +1,14 @@
 import { useState, useRef } from "react";
 import FormGroup from "../../components/FormGroup/register";
 import { ButtonSubmit } from "../../components/ButtonSubmit";
-import useUserCRUD from "../../hooks/useUserCRUD";
+import { createUser } from "../../services/userService";
+import { useNavigate } from "react-router-dom";
 
 
 const Register = () => {
 
-    // Utilizado para o CRUD do usuário
-    const { createUser } = useUserCRUD();
+    const navigate = useNavigate();
+
 
     // Utilizado para pegar o input password
     const passwordInput = useRef(null);
@@ -26,14 +27,15 @@ const Register = () => {
         // telefone: "",
         email: "",
         senha: "", 
-        imagem: "https://static.vecteezy.com/system/resources/thumbnails/024/983/914/small/simple-user-default-icon-free-png.png",
+        // imagem: "https://static.vecteezy.com/system/resources/thumbnails/024/983/914/small/simple-user-default-icon-free-png.png",
+        imagem: "",
         admin: false
     });
 
 
     // Funções
 
-    // A cada mudança nos inputs, captura o texto digitado
+     // A cada mudança nos inputs, captura o texto digitado
     const handleChange = (event) => {
         // console.log(event.target.name, event.target.value); // Pega o nome e valor do input que está onChange e imprime no console
 
@@ -45,10 +47,22 @@ const Register = () => {
 
 
     // Ao enviar formulário enviar os dados para pág '/register/success' que exibirá as informações cadastradas
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        createUser(fieldValue);
+        try {
+            const response = await createUser(fieldValue);
+
+            console.log(response.data)
+
+            if (response) {
+                navigate('/register/success', { state: response.data })
+            };
+            
+        } catch (error) {
+            const err = error.response.data.message;
+            console.error('Erro findById (front): ', err);
+        }
 
     }
 
@@ -71,6 +85,8 @@ const Register = () => {
             <form className="w-6/12 mx-auto py-3 sm:w-full" onSubmit={handleSubmit}>
 
                 <FormGroup label='Nome Completo' inputType='text' name='nome' value={fieldValue.nome} onChange={handleChange} />
+
+                <FormGroup label='Foto' inputType='text' name='imagem' value={fieldValue.imagem} onChange={handleChange} />
 
                 {/* <FormGroup label='Data de nascimento' inputType='date' name='dataNasc' value={fieldValue.dataNasc} onChange={handleChange} /> */}
 
