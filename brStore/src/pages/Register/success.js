@@ -18,6 +18,7 @@ const Success = () => {
                     Dados cadastrais:
                 </h2>
 
+                <p className="text-base text-gray-600"><strong>Foto:</strong> <img src={state.imagem} alt={state.nome} className="w-20" /></p>
                 <p className="text-base text-gray-600"><strong>Nome:</strong> {state.nome}</p>
                 {/* <p className="text-base text-gray-600"><strong>Data de nascimento: </strong> <input type='date' value={state.dataNasc} readOnly /></p> */}
                 {/* <p className="text-base text-gray-600"><strong>CPF: </strong> {state.cpf}</p> */}
