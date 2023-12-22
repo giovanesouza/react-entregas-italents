@@ -19,9 +19,6 @@ const Navbar = () => {
     const storageCart = JSON.parse(localStorage.getItem('productCart'));
 
     useEffect(() => {
-        console.log('NavBar Nasceu');
-
-
         const totalItemsBag = storageCart.reduce((valor, product) => {
             return valor + product.quantity;
         }, 0);

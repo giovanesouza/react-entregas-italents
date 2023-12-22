@@ -25,11 +25,11 @@ A aplicação 'rodará' no endereço [http://localhost:3000](http://localhost:30
 ## Atividade 4: Desenvolver uma aplicação que contenha os seguintes tópicos.
 
 - No mínimo 5 páginas OK
-- Autenticação + rotas seguras
+- Autenticação + rotas seguras OK
 - CRUD completo (Criação, Leitura, Exclusão e Edição)
 - Troca de dados entre rotas via props
 - Troca de estados globais com useContext OK
-- Estilização de todas as páginas com tawindcss
+- Estilização de todas as páginas com tawindcss OK
 - Integração com serviço externo via axios consumindo endpoints [GET/POST/PUT/DELETE]
 
 

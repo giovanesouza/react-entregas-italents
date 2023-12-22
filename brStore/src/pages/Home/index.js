@@ -16,6 +16,7 @@ const Home = () => {
     const [products, setProducts] = useState([]);
 
 
+
     useEffect(() => {
         console.log('COMPONENTE NASCEU NA HOME');
 
@@ -28,8 +29,7 @@ const Home = () => {
         if (userInfo) {
             // Busca o usuário pelo id e seta as informações dele em userFull e no localStorage
             findUserById(userInfo.id);
-        };
-
+        }
 
     }, []);
 
@@ -70,7 +70,7 @@ const Home = () => {
                         <Admin>
                             {products.map(product => (
 
-                                <ProductListAdmin product={product}  key={product._id} onClick={() => removeProduct(product._id)} />
+                                <ProductListAdmin product={product} key={product._id} onClick={() => removeProduct(product._id)} />
 
                             ))}
 
