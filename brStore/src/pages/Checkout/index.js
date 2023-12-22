@@ -1,13 +1,48 @@
 import { SectionCheckout } from "../../components/SectionCheckout";
 import { Table } from "../../components/SectionCheckout/table";
-import { Count } from "../../components/SectionCheckout/count";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { sendCart } from "../../services/orderService";
+
 
 const Checkout = () => {
 
-    // Items add ao carrinho
-    const [itemsBag, setItemsBag] = useState([
-    ]);
+    // Guarda os produtos adicionados na sacola
+    const [productsCart, setProductsCart] = useState([]);
+
+    // Guarda o valor total do produto
+    const [totalValue, setTotalValue] = useState(0);
+    console.log('VALOR TOTAL BAG: ', totalValue);
+
+
+
+    // Toda vez que acessar o componente carrinho, lista os produtos adicionados
+    useEffect(() => {
+
+        const storageCart = JSON.parse(localStorage.getItem('productCart'));
+        setProductsCart(storageCart);
+
+        const total = storageCart.reduce((valor, product) => {
+            return valor + product.total;
+        }, 0);
+        setTotalValue(total);
+
+    }, []);
+
+    
+    // Remove produto do carrinho
+    const remove = (id) => {
+        const storageCart = JSON.parse(localStorage.getItem('productCart'));
+
+        // Retorna todos os produtos, exceto o que foi removido
+        const filterCart = storageCart.filter((product) => product._id !== id);
+
+        // Atualiza lista no localStorage
+        localStorage.setItem('productCart', JSON.stringify(filterCart));
+        setProductsCart(filterCart);
+    };
+
+
+
 
     return (
         <main className="w-screen p-2">
@@ -17,23 +52,24 @@ const Checkout = () => {
                 <Table>
 
                     {
-                        itemsBag.length === 0 ?
+                        productsCart.length === 0 ?
                             (
                                 <tr className="text-base text-gray-600 text-center">
                                     <td className="p-3" td colSpan={5}>Sua sacola está vazia</td>
                                 </tr>
                             )
                             :
-                            itemsBag.map((item, index) => (
-                                <tr className="text-gray-600" key={index}>
-                                    <td className="flex items-center gap-2 py-2"><img src={item.imagem} alt={item.nome} className='w-16' /> {item.nome}</td>
-                                    <td className="text-center">R$ {item.precoUnit}</td>
+                            productsCart.map((product, index) => (
+                                <tr className="text-gray-600 md:text-xs 2xl:text-base" key={index}>
+                                    <td className="flex products-center gap-2 py-2"><img src={product.imagem} alt={product.nome} className='w-16' /> {product.nome}</td>
+                                    <td className="text-center">R$ {(product.sale).toFixed(2)}</td>
                                     <td className="text-center">
-                                        <Count qtd={item.qtd} />
+                                        {product.quantity}
                                     </td>
-                                    <td className="text-center">R$ {item.precoTotal}</td>
+                                    <td className="text-center">R$ {(product.total.toFixed(2))}</td>
                                     <td className="text-center text-red-600">
-                                        <i className="bi bi-trash3-fill cursor-pointer"></i>
+                                        <i className="bi bi-trash3-fill cursor-pointer"
+                                        onClick={() => remove(product._id)}></i>
                                     </td>
                                 </tr>
                             ))
