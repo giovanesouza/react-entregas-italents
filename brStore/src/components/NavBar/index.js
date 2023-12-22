@@ -1,7 +1,6 @@
 import './style.css';
 import { useContext, useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FindProductsByInitials } from './FindProduct';
+import { Link } from "react-router-dom";
 import { AuthContext } from '../../context/AuthContext';
 
 const Navbar = () => {
@@ -14,7 +13,22 @@ const Navbar = () => {
     // console.log(userLogged)
     // console.log('Usuário completo (navbar): ', userFull);
 
-    const navigate = useNavigate();
+    // Total de itens add na sacola
+    const [totalItems, setTotalItems] = useState(0);
+
+    const storageCart = JSON.parse(localStorage.getItem('productCart'));
+
+    useEffect(() => {
+        console.log('NavBar Nasceu');
+
+
+        const totalItemsBag = storageCart.reduce((valor, product) => {
+            return valor + product.quantity;
+        }, 0);
+
+        setTotalItems(totalItemsBag);
+
+    }, [storageCart]); // Sempre que houver uma mudança no storageCart ele atualiza no contador
 
 
     const userSettinsElement = useRef(null);
@@ -146,7 +160,7 @@ const Navbar = () => {
 
                     <Link to="/checkout" className="relative">
                         <i className="bi bi-bag-fill  text-white text-2xl" />
-                        <span className="total-items-bag">0</span>
+                        <span className="total-items-bag">{totalItems}</span>
                     </Link>
 
                 </div>
