@@ -3,15 +3,11 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FindProductsByInitials } from './FindProduct';
 import { AuthContext } from '../../context/AuthContext';
-import { useStoreAPI } from '../../hooks/useStoreAPI';
-
 
 const Navbar = () => {
     // State utilizado para destacar o menu (link ativo)
     const [menuTab, setMenuTab] = useState('');
 
-    // State para pegar o valor do input
-    const [searchInput, setSearchInput] = useState('');
 
     // Informações passadas via context
     const { userLogged, userFull, isAdmin, logoutUser } = useContext(AuthContext);
@@ -20,34 +16,6 @@ const Navbar = () => {
 
     const navigate = useNavigate();
 
-    const allProducts = useStoreAPI();
-
-
-    // Captura as informações do input
-    const handleChange = (event) => {
-        setSearchInput(event.target.value);
-    };
-
-
-    let iniciaisProcuradas = '';
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        // console.log('Buscando produtos...');
-        iniciaisProcuradas = searchInput;
-
-        const produtosEncontrados = FindProductsByInitials(allProducts, iniciaisProcuradas);
-
-        if (produtosEncontrados) {
-            navigate(`/product/${searchInput}`, { state: produtosEncontrados })
-        } else {
-            navigate(`/product/${searchInput}`, { state: [] });
-            // console.log('Nenhum produto encontrado com essas iniciais.');
-        }
-
-        setSearchInput(''); // limpa input de busca
-    };
 
     const userSettinsElement = useRef(null);
     // console.log(userSettinsElement);
@@ -69,10 +37,10 @@ const Navbar = () => {
                     <Link to="/" onClick={() => setMenuTab('')}>BrStore</Link>
                 </div>
 
-                <form className='w-2/4 text-center relative sm:hidden' onSubmit={handleSubmit}>
+                <form className='w-2/4 text-center relative sm:hidden'>
 
                     <input type="text" placeholder="Buscar produto..."
-                        className='w-full border-0 outline-0 rounded-2xl py-2 px-5' value={searchInput} onChange={handleChange} />
+                        className='w-full border-0 outline-0 rounded-2xl py-2 px-5' />
 
                     <i className="bi bi-search absolute top-2 right-7" />
                 </form>
