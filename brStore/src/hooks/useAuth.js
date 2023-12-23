@@ -33,7 +33,9 @@ const useAuth = () => {
             api.defaults.headers.common['Authorization'] = `Bearer ${userInfo.token}`;
 
             setUserLogged(true); // Utilizado caso já esteja logado
-        };
+        } else {
+            localStorage.setItem('productCart', JSON.stringify([]));
+        }
 
         setloading(false);
     }, []);
@@ -72,40 +74,48 @@ const useAuth = () => {
 
     const logoutUser = () => {
         setUserLogged(false); // Estado passa a ser falso (Não logado)
-        localStorage.clear(); // Limpa o localStorage
+        // Limpa o localStorage
+        localStorage.removeItem('userInfo'); 
+        localStorage.removeItem('userFull'); 
+        localStorage.removeItem('address'); 
         navigate('/login'); // Redireciona para pág login
     };
 
 
     const findUserById = async (userId) => {
+
         try {
 
             const response = await getUserById(userId);
-            const data = await response.data;
 
-            const nomes = data.nome.split(' '); // Separa os nomes
+            if (response) {
+                const data = await response.data;
 
-            // Dados do usuário formatado
-            const formattedUser = {
-                id: data._id,
-                nomeCompleto: data.nome,
-                nome: nomes[0],
-                email: data.email,
-                imagem: data.imagem,
-                admin: data.admin
-            };
+                const nomes = data.nome.split(' '); // Separa os nomes
 
-            console.log('Usuário findByID:', formattedUser);
+                // Dados do usuário formatado
+                const formattedUser = {
+                    id: data._id,
+                    nomeCompleto: data.nome,
+                    nome: nomes[0],
+                    email: data.email,
+                    imagem: data.imagem,
+                    admin: data.admin
+                };
 
-            setUserFull(formattedUser); // Atualiza a variável de estado com todas as informações do usuário
-            setIsAdmin(data.admin); // Verifica se é administrador
+                console.log('Usuário findByID (useAuth):', formattedUser);
 
-            localStorage.setItem('userFull', JSON.stringify(formattedUser));
+                setUserFull(formattedUser); // Atualiza a variável de estado com todas as informações do usuário
+                setIsAdmin(data.admin); // Verifica se é administrador
+
+                localStorage.setItem('userFull', JSON.stringify(formattedUser));
+            }
 
         } catch (error) {
             const err = error.response.data.message;
             console.error('Erro findById (front): ', err);
         }
+
 
     };
 
