@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-// import { AiOutlineMinusSquare, AiOutlinePlusSquare } from 'react-icons/ai';
-// import { FiShoppingCart } from 'react-icons/fi';
 import { useNavigate, useParams } from "react-router-dom";
 
 import { findProductById } from "../../../services/productService";
