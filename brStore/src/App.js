@@ -20,6 +20,7 @@ import Complete from './pages/Complete';
 import AddCategory from './pages/Admin/Categories/AddCategory';
 import ListCategories from './pages/Admin/Categories/ListCategories';
 import EditCategory from './pages/Admin/Categories/EditCategory';
+import RegistrationInfo from './pages/User/RegistrationInfo';
 
 function App() {
   return (
@@ -57,6 +58,11 @@ function App() {
             </ProtectedRoute>
           } />
 
+          <Route path='/user/registration-info' element={
+            <ProtectedRoute>
+              <RegistrationInfo />
+            </ProtectedRoute>
+          } />
 
           {/* Rota aninhada */}
           <Route path='/checkout' element={<Checkout />}>
