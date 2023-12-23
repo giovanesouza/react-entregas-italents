@@ -17,7 +17,9 @@ import ProductInfo from './pages/Products/ProductInfo';
 import Address from './components/Address';
 import Payment from './components/Payment';
 import Complete from './pages/Complete';
-
+import AddCategory from './pages/Admin/Categories/AddCategory';
+import ListCategories from './pages/Admin/Categories/ListCategories';
+import EditCategory from './pages/Admin/Categories/EditCategory';
 
 function App() {
   return (
@@ -58,8 +60,8 @@ function App() {
 
           {/* Rota aninhada */}
           <Route path='/checkout' element={<Checkout />}>
-            <Route path='address' element={<Address /> } />
-            <Route path='payment' element={<Payment /> } />
+            <Route path='address' element={<Address />} />
+            <Route path='payment' element={<Payment />} />
           </Route>
 
           <Route path='/complete' element={
@@ -70,6 +72,24 @@ function App() {
 
 
           {/* Rotas ADMIN */}
+          <Route path='/admin/categories' element={
+            <ProtectedRoute>
+              <ListCategories />
+            </ProtectedRoute>
+          } />
+
+          <Route path='/admin/add-category' element={
+            <ProtectedRoute>
+              <AddCategory />
+            </ProtectedRoute>
+          } />
+
+          <Route path='/admin/edit-category/:id' element={
+            <ProtectedRoute>
+              <EditCategory />
+            </ProtectedRoute>
+          } />
+
           <Route path='/admin/add-product' element={
             <ProtectedRoute>
               <AddProducts />
