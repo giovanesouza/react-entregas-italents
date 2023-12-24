@@ -8,8 +8,8 @@ const addProductAPI = (product) =>
         throw error; // Lança o erro e permite pegá-lo no front
     }); // Erro
 
-const findAllProducts = () =>
-  api.get('/produto/findAll')
+const findAllProducts = (limit, offset) =>
+  api.get(`/produto/findAll/?limit=${limit}&offset=${offset}`)
     .then((response) => response)
     .catch(error => {
         console.error('Erro (back): ', error);

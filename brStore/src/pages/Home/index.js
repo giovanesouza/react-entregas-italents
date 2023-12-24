@@ -14,12 +14,15 @@ const Home = () => {
 
     // Pega todos os produtos cadastrados no BD
     const [products, setProducts] = useState([]);
+    console.log('total de produtos: ', products)
 
+    const [currentPage, setCurrentPage] = useState(1);
 
+    const totalItemsPerPage = 10;
+
+    console.log(currentPage)
 
     useEffect(() => {
-        console.log('COMPONENTE NASCEU NA HOME');
-
         getAllProducts(); // Lista todos os produtos do BD
 
         const userInfo = JSON.parse(localStorage.getItem('userInfo')); // contem email, id, token
@@ -31,15 +34,23 @@ const Home = () => {
             findUserById(userInfo.id);
         }
 
-    }, []);
+    }, [currentPage]); // Sempre que houver alteração no currentPage ele executa novamente
 
 
     const getAllProducts = async () => {
         try {
-            const response = await findAllProducts();
-            console.log(response)
 
-            setProducts(response.data);
+            const limit = totalItemsPerPage;
+            const offset = (currentPage - 1) * limit;
+
+            const response = await findAllProducts(limit, offset);
+
+            // Renderiza a página somente se houver produtos
+            if (response.data.length > 0) {
+                setProducts(response.data);
+            } else {
+                setProducts([]);
+            }
 
         } catch (error) {
             const err = error.response.data.message;
@@ -58,6 +69,10 @@ const Home = () => {
         }
     };
 
+    const handlePageChange = (page) => {
+        console.log('clicou')
+        setCurrentPage(page);
+    };
 
     return (
         <main className='w-screen p-2'>
@@ -97,6 +112,21 @@ const Home = () => {
 
             }
 
+
+            {/* Paginação */}
+            <div className=' bg-blue-200  max-w-max rounded-lg my-5 mx-auto'>
+                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}
+                    className='text-black pl-2 cursor-pointer'>
+                    Anterior
+                </button>
+
+                <span className='text-black font-bold bg-white p-2 mx-2'>pág {currentPage}</span>
+
+                <button onClick={() => handlePageChange(currentPage + 1)} disabled={products.length === 0}
+                    className=' text-black rounded-lg pr-2 cursor-pointer'>
+                    Próxima
+                </button>
+            </div>
 
         </main>
     );
