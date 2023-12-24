@@ -8,8 +8,8 @@ const createCategoryService = (nome) =>
       throw error; // Lança o erro e permite pegá-lo no front
     }); // Erro
 
-const findAllCategories = () =>
-  api.get('/categoria/findAll')
+const findAllCategories = (limit, offset) =>
+  api.get(`/categoria/findAll/?limit=${limit}&offset=${offset}`)
     .then((response) => response)
     .catch(error => {
       console.error('Erro (back): ', error);

@@ -8,16 +8,28 @@ const ListCategories = () => {
 
     const navigate = useNavigate();
 
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const totalItemsPerPage = 10;
+
     useEffect(() => {
         getAllCategories();
-    }, []);
+    }, [currentPage]);
 
 
     const getAllCategories = async () => {
         try {
+            const limit = totalItemsPerPage;
+            const offset = (currentPage - 1) * limit;
 
-            const response = await findAllCategories();
-            setCategories(response.data)
+            const response = await findAllCategories(limit, offset);
+
+            // Renderiza a página somente se houver categorias
+            if (response.data.length > 0) {
+                setCategories(response.data);
+            } else {
+                setCategories([]);
+            }
 
         } catch (error) {
             const err = error.response.data.message;
@@ -33,7 +45,9 @@ const ListCategories = () => {
         }
     };
 
-
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
     return (
         <section className="my-12 max-w-screen-xl mx-auto px-6">
@@ -79,6 +93,21 @@ const ListCategories = () => {
                 </tbody>
             </table>
 
+
+            {/* Paginação */}
+            <div className=' bg-blue-200  max-w-max rounded-lg my-5 mx-auto'>
+                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}
+                    className='text-black pl-2 cursor-pointer'>
+                    Anterior
+                </button>
+
+                <span className='text-black font-bold bg-white p-2 mx-2'>pág {currentPage}</span>
+
+                <button onClick={() => handlePageChange(currentPage + 1)} disabled={categories.length === 0}
+                    className=' text-black rounded-lg pr-2 cursor-pointer'>
+                    Próxima
+                </button>
+            </div>
         </section>
     );
 }
