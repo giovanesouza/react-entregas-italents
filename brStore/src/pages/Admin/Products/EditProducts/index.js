@@ -109,6 +109,13 @@ const EditProduct = () => {
                 <h1 className="text-2xl text-gray-600">Edição de Produto</h1>
             </div>
 
+            <div className="flex justify-end space-y-2">
+                <button onClick={() => navigate('/')} className="w-44 px-2  py-3 bg-gray-600 text-white 
+            hover:bg-blue-600 rounded-lg transition duration-300">
+                    Voltar
+                </button>
+            </div>
+
             <form
                 onSubmit={handleSubmit}
                 className="grid grid-cols-1 md:grid-cols-1 2xl:grid-cols-2 gap-10 mt-6">
