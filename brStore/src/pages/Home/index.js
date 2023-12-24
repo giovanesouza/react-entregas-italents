@@ -11,16 +11,13 @@ const Home = () => {
 
     const { findUserById, isAdmin } = useContext(AuthContext);
 
-
     // Pega todos os produtos cadastrados no BD
     const [products, setProducts] = useState([]);
-    console.log('total de produtos: ', products)
 
     const [currentPage, setCurrentPage] = useState(1);
 
     const totalItemsPerPage = 10;
 
-    console.log(currentPage)
 
     useEffect(() => {
         getAllProducts(); // Lista todos os produtos do BD
@@ -70,7 +67,6 @@ const Home = () => {
     };
 
     const handlePageChange = (page) => {
-        console.log('clicou')
         setCurrentPage(page);
     };
 
