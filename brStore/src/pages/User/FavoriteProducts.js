@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import ProductList from "../../components/ProductList/ProductList";
 import ProductCard from "../../components/ProductCard";
-import { getUserById } from "../../services/authService";
-import { findProductById } from "../../services/productService";
+// import { getUserById } from "../../services/authService";
+// import { findProductById } from "../../services/productService";
 
 const FavoriteProducts = () => {
 
@@ -10,6 +10,7 @@ const FavoriteProducts = () => {
     const [favProducts, setFavProducts] = useState([]);
     console.log('produtos favoritos: ', favProducts)
 
+    /*
     useEffect(() => {
 
         findUserById();
@@ -55,7 +56,7 @@ const FavoriteProducts = () => {
             console.error('Erro FavoriteProducts (front): ', err);
         }
     };
-
+*/
 
 
     return (
