@@ -78,6 +78,7 @@ const useAuth = () => {
         localStorage.removeItem('userInfo'); 
         localStorage.removeItem('userFull'); 
         localStorage.removeItem('address'); 
+        setIsAdmin(false); // Ao deslogar deixa o site com a visualização dos produtos padrão para o público geral
         navigate('/login'); // Redireciona para pág login
     };
 
