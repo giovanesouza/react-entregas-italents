@@ -32,7 +32,7 @@ const AddProducts = () => {
 
     // Chama função do serviço
     const getCategories = async () => {
-        const response = await findAllCategories();
+        const response = await findAllCategories(50, 0);
 
         // Pega os Arrays das categorias e retornam modificadas para se adequarem ao padrão do MultiSelect - label/value
         const categoriesSelect = response.data.map(categoria => {
